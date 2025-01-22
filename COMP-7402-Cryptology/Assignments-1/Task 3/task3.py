@@ -1,10 +1,11 @@
 def digraphs(plaintext: str):
     # 4.  Remove spaces and punctuation
-    condensed_text = plaintext.upper()
+    condensed_text = plaintext.upper().replace('J', 'I')
     condensed_text = ''.join([char for char in condensed_text if char.isalpha()])
 
     text_with_filler = ''
     for i in range(len(condensed_text)):
+
         text_with_filler += condensed_text[i]
 
         if i < len(condensed_text) - 1 and condensed_text[i] == condensed_text[i + 1] and len(text_with_filler) % 2 != 0:
@@ -22,14 +23,12 @@ def create_matrix(keyword: str):
     a_to_z = [chr(i) for i in range(ord('A'), ord('Z') + 1) if chr(i) != 'J']
 
     matrix = [['' for _ in range(COLS)] for _ in range(ROWS)]
-    keyword = keyword.upper()
+    keyword = keyword.upper().replace('J', 'I')
     new_keyword = ''
 
     for char in keyword:
         # 4. Remove spaces and punctuation
         if char.isalpha():
-            if char == 'J':  
-                char = 'I'
             # 3. Remove duplicate from the keyword
             if char not in new_keyword:
                 new_keyword += char
