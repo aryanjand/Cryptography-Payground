@@ -1,5 +1,5 @@
 def egcd(a: int, b: int):
-    x0, x1 = 1, 0
+    x0, x1 = 1, 0 
     y0, y1 = 0, 1
 
     while b != 0:
@@ -11,7 +11,6 @@ def egcd(a: int, b: int):
     return a, x0, y0
 
 def modInv(a: int, b: int):
-    a = a % b
     gcd, x, _ = egcd(a, b)
     if gcd != 1:
         return None
@@ -19,27 +18,21 @@ def modInv(a: int, b: int):
     return x % b
 
 def main():
-    a, b = 43, 17
-    print(f'Given values: a = {a}, b = {b}')
-    gcd, x, y = egcd(a, b)
-    print(f'gcd({a}, {b}) = {gcd}')
-    print(f'Integers x, y such that {a}*x + {b}*y = gcd({a}, {b}): x = {x}, y = {y}')
-    result = modInv(a, b)
-    if result is not None:
-        print(f'Modular Inverse of {a} modulo {b} is: {result}')
-    else:
-        print(f'Modular Inverse does not exist for a = {a} and b = {b} (gcd(a, b) != 1)')
+    a = int(input("Enter value for a: "))
+    b = int(input("Enter value for b: "))
     
-    a, b = 400, 10
-    print(f'Given values: a = {a}, b = {b}')
+    print("\n--- Calculation Results ---")
+    print(f"Given values: a = {a}, b = {b}")
+
     gcd, x, y = egcd(a, b)
-    print(f'gcd({a}, {b}) = {gcd}')
-    print(f'Integers x, y such that {a}*x + {b}*y = gcd({a}, {b}): x = {x}, y = {y}')
+    print(f"gcd({a}, {b}) = {gcd}")
+    print(f"Integers x, y such that {a}*x + {b}*y = gcd({a}, {b}): x = {x}, y = {y}")
+    
     result = modInv(a, b)
     if result is not None:
-        print(f'Modular Inverse of {a} modulo {b} is: {result}')
+        print(f"Modular Inverse of {a} modulo {b} is: {result}")
     else:
-        print(f'Modular Inverse does not exist for a = {a} and b = {b} (gcd(a, b) != 1)')
-
+        print(f"Modular Inverse does not exist for a = {a} and b = {b} (gcd(a, b) != 1)")
+    
 if __name__ == '__main__':
     main()

@@ -24,18 +24,20 @@ def create_matrix(keyword: str):
 
     matrix = [['' for _ in range(COLS)] for _ in range(ROWS)]
     keyword = keyword.upper().replace('J', 'I')
-    new_keyword = ''
+    
+    new_keyword = ''.join([char for char in keyword if char.isalpha() and char not in new_keyword])
+    new_keyword = new_keyword.join([char for char in a_to_z if char not in new_keyword])
+    
+    # for char in keyword:
+    #     # 4. Remove spaces and punctuation
+    #     if char.isalpha():
+    #         # 3. Remove duplicate from the keyword
+    #         if char not in new_keyword:
+    #             new_keyword += char
 
-    for char in keyword:
-        # 4. Remove spaces and punctuation
-        if char.isalpha():
-            # 3. Remove duplicate from the keyword
-            if char not in new_keyword:
-                new_keyword += char
-
-    for char in a_to_z:
-        if char not in new_keyword:
-            new_keyword += char
+    # for char in a_to_z:
+    #     if char not in new_keyword:
+    #         new_keyword += char
 
     i = 0
     for r in range(ROWS):
@@ -78,6 +80,8 @@ def main():
 
     print("Encrypted message:")
     print(playfair_cipher(key, message))
+
+    # Unit Tests
 
 
 if __name__ == '__main__':
