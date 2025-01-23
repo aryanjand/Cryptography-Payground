@@ -1,3 +1,5 @@
+import unittest
+
 def digraphs(plaintext: str):
     # 4.  Remove spaces and punctuation
     condensed_text = plaintext.upper().replace('J', 'I')
@@ -24,20 +26,18 @@ def create_matrix(keyword: str):
 
     matrix = [['' for _ in range(COLS)] for _ in range(ROWS)]
     keyword = keyword.upper().replace('J', 'I')
-    
-    new_keyword = ''.join([char for char in keyword if char.isalpha() and char not in new_keyword])
-    new_keyword = new_keyword.join([char for char in a_to_z if char not in new_keyword])
-    
-    # for char in keyword:
-    #     # 4. Remove spaces and punctuation
-    #     if char.isalpha():
-    #         # 3. Remove duplicate from the keyword
-    #         if char not in new_keyword:
-    #             new_keyword += char
+    new_keyword = ''
 
-    # for char in a_to_z:
-    #     if char not in new_keyword:
-    #         new_keyword += char
+    for char in keyword:
+        # 4. Remove spaces and punctuation
+        if char.isalpha():
+            # 3. Remove duplicate from the keyword
+            if char not in new_keyword:
+                new_keyword += char
+
+    for char in a_to_z:
+        if char not in new_keyword:
+            new_keyword += char
 
     i = 0
     for r in range(ROWS):
@@ -48,6 +48,9 @@ def create_matrix(keyword: str):
     return matrix
 
 def playfair_cipher(keyword: str, plaintext: str):
+    if (keyword == None or plaintext == None):
+        return None
+    
     # 2. create 5x5 matrix
     ROWS = COLS = 5
     matrix = create_matrix(keyword)
@@ -75,14 +78,72 @@ def playfair_cipher(keyword: str, plaintext: str):
     return res
 
 def main():
-    key = input("Enter the key for the Playfair cipher: ")
-    message = input("Enter the message to encrypt: ")
+    key = input('Enter the key for the Playfair cipher: ')
+    message = input('Enter the message to encrypt: ')
 
-    print("Encrypted message:")
+    print('Encrypted message:')
     print(playfair_cipher(key, message))
 
-    # Unit Tests
 
+import unittest
+
+class PlayfairCipher(unittest.TestCase):
+
+    def testcase_1(self):
+        key = ''
+        message = ''
+        res = playfair_cipher(key, message)
+        expected_output = ''
+        self.assertEqual(res, expected_output)
+    
+    def testcase_2(self):
+        key = ''
+        message = 'hello'
+        res = playfair_cipher(key, message)
+        expected_output = 'KCNVMP'  
+        self.assertEqual(res, expected_output)
+    
+    def testcase_3(self):
+        key = 'ballon'
+        message = 'world'
+        res = playfair_cipher(key, message)
+        expected_output = 'YASAEW'
+        self.assertEqual(res, expected_output)
+    
+    def testcase_4(self):
+        key = 'MONARCHY monarchy'
+        message = 'mosque'
+        res = playfair_cipher(key, message)
+        expected_output = 'ONTSML'  
+        self.assertEqual(res, expected_output)
+    
+
+    def testcase_5(self):
+        key = 'kingdom'
+        message = 'hello world'
+        res = playfair_cipher(key, message)
+        expected_output = 'LFHYEBVMTFNZ'  
+        self.assertEqual(res, expected_output)
+
+    def testcase_6(self):
+        key = 'playfair'
+        message = 'jjj'
+        res = playfair_cipher(key, message)
+        expected_output = 'CUCUCU'  
+        self.assertEqual(res, expected_output)
+    
+    def testcase_7(self):
+        key = None
+        message = 'message'
+        res = playfair_cipher(key, message)
+        self.assertIsNone(res)
+
+    def testcase_8(self):
+        key = 'keyword'
+        message = None
+        res = playfair_cipher(key, message)  
+        self.assertIsNone(res)
 
 if __name__ == '__main__':
     main()
+    unittest.main()
