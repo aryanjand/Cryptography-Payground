@@ -30,7 +30,7 @@ def calculateModularMultiplicativeInverse(a: int, b: int):
 
     gcd, x, y = egcd(a, b)
     print(f"gcd({a}, {b}) = {gcd}")
-    print(f"Integers x, y such that {a}*x + {b}*y = gcd({a}, {b}): x = {x}, y = {y}")
+    print(f"Integers x, y such that {a}*x + {b}*y = gcd({a}, {b}): x = {y}, y = {x}")
     
     result = modInv(a, b)
     if result is not None:
