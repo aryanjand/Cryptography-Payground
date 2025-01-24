@@ -1,3 +1,5 @@
+import unittest
+
 def egcd(a: int, b: int):
     x0, x1 = 1, 0 
     y0, y1 = 0, 1
@@ -17,10 +19,10 @@ def modInv(a: int, b: int):
     
     return x % b
 
-def main():
-    a = int(input("Enter value for a: "))
-    b = int(input("Enter value for b: "))
-    
+def calculateModularMultiplicativeInverse(a: int, b: int):
+    # 1. Integer a is going to be the modulus
+    # 2. A non-negative integer b that is less than a
+
     print("\n--- Calculation Results ---")
     print(f"Given values: a = {a}, b = {b}")
 
@@ -34,5 +36,39 @@ def main():
     else:
         print(f"Modular Inverse does not exist for a = {a} and b = {b} (gcd(a, b) != 1)")
     
+    return gcd, x, y
+
+def main():
+    a = int(input("Enter value for a: "))
+    b = int(input("Enter value for b: "))
+    calculateModularMultiplicativeInverse(a, b)
+    
+
+class TestExtendedEuclideanAlgorithm(unittest.TestCase):
+
+    def testcase_1(self):
+        pass
+
+    def testcase_2(self):
+        pass
+
+    def testcase_3(self):
+        pass
+
+    def testcase_4(self):
+        pass
+
+    def testcase_5(self):
+        pass
+
+    def testcase_6(self):
+        pass
+
+    def testcase_7(self):
+        pass
+
+    def testcase_8(self):
+        pass
+
 if __name__ == '__main__':
     main()

@@ -7,7 +7,6 @@ def digraphs(plaintext: str):
 
     text_with_filler = ''
     for i in range(len(condensed_text)):
-
         text_with_filler += condensed_text[i]
 
         if i < len(condensed_text) - 1 and condensed_text[i] == condensed_text[i + 1] and len(text_with_filler) % 2 != 0:
@@ -29,10 +28,9 @@ def create_matrix(keyword: str):
     new_keyword = ''
 
     for char in keyword:
+        # 3. Remove duplicate from the keyword
         # 4. Remove spaces and punctuation
-        if char.isalpha():
-            # 3. Remove duplicate from the keyword
-            if char not in new_keyword:
+        if char.isalpha() and char not in new_keyword:
                 new_keyword += char
 
     for char in a_to_z:
@@ -87,7 +85,7 @@ def main():
 
 import unittest
 
-class PlayfairCipher(unittest.TestCase):
+class TestPlayfairCipher(unittest.TestCase):
 
     def testcase_1(self):
         key = ''
@@ -117,7 +115,6 @@ class PlayfairCipher(unittest.TestCase):
         expected_output = 'ONTSML'  
         self.assertEqual(res, expected_output)
     
-
     def testcase_5(self):
         key = 'kingdom'
         message = 'hello world'
