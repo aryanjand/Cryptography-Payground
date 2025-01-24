@@ -83,8 +83,6 @@ def main():
     print(playfair_cipher(key, message))
 
 
-import unittest
-
 class TestPlayfairCipher(unittest.TestCase):
 
     def testcase_1(self):

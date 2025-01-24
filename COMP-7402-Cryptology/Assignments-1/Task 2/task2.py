@@ -1,6 +1,9 @@
 import unittest
 
 def egcd(a: int, b: int):
+    if b < a:
+        a, b = b, a
+
     x0, x1 = 1, 0 
     y0, y1 = 0, 1
 
@@ -16,8 +19,7 @@ def modInv(a: int, b: int):
     gcd, x, _ = egcd(a, b)
     if gcd != 1:
         return None
-    
-    return x % b
+    return x % a
 
 def calculateModularMultiplicativeInverse(a: int, b: int):
     # 1. Integer a is going to be the modulus
@@ -47,28 +49,47 @@ def main():
 class TestExtendedEuclideanAlgorithm(unittest.TestCase):
 
     def testcase_1(self):
-        pass
+        a, b = 43, 17
+        gcd, x, y = egcd(a, b)
+        self.assertEqual(gcd, 1)
+        self.assertEqual(a * y + b * x, gcd)
+        result = modInv(a, b)
+        self.assertEqual(result, 38)
 
     def testcase_2(self):
-        pass
+        a, b = 12, 8
+        gcd, x, y = egcd(a, b)
+        self.assertEqual(gcd, 4)
+        self.assertEqual(a * y + b * x, gcd)
+        result = modInv(a, b)
+        self.assertIsNone(result)
 
     def testcase_3(self):
-        pass
+        a, b = 43, 1
+        gcd, x, y = egcd(a, b)
+        self.assertEqual(gcd, 1)
+        self.assertEqual(a * y + b * x, gcd)
+        result = modInv(a, b)
+        self.assertEqual(result, 1)
 
     def testcase_4(self):
-        pass
+        a, b = 123456789, 98765432
+        gcd, x, y = egcd(a, b)
+        self.assertEqual(gcd, 1)
+        self.assertEqual(a * y + b * x, gcd)  
+        result = modInv(a, b)
+        self.assertEqual(result, 92592593)
 
     def testcase_5(self):
-        pass
+        a, b = 25, 25
+        gcd, x, y = egcd(a, b)
+        self.assertEqual(gcd, 25)
+        self.assertEqual(a * y + b * x, gcd)
+        result = modInv(a, b)
+        self.assertIsNone(result) 
 
-    def testcase_6(self):
-        pass
 
-    def testcase_7(self):
-        pass
-
-    def testcase_8(self):
-        pass
 
 if __name__ == '__main__':
     main()
+    unittest.main()
