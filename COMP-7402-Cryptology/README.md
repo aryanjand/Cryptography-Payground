@@ -1,1 +1,0 @@
-# COMP-7402-Cryptology
