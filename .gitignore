@@ -1,4 +1,6 @@
-
+Assignment-Questions-PDFS
+Assignment-Submissions
+.vscode
 .DS_Store
-**/.DS_Store
-DS_Store
+.venv
+__pycache__
